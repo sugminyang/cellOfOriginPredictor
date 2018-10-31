@@ -23,7 +23,7 @@ public class ReaderVCF {
 		try {
 			BufferedReader in = new  BufferedReader(new FileReader(vcfFile));
 			String line;
-			
+
 			while((line=in.readLine()) != null)	
 			{
 				if(line.charAt(0) == '#')	continue;	//option value skip.
@@ -32,37 +32,37 @@ public class ReaderVCF {
 				String[] items = line.split("\t");
 				String chr = items[0];
 				if(chr.equalsIgnoreCase("x") || chr.equalsIgnoreCase("y"))	continue;	//sex chromosome skip.
-				
+
 				//all lines related somatic mutations.
-//				System.out.println(line);
-				
+				//				System.out.println(line);
+
 				/*	
 				 * convert format for bedtools library
 				 * chr1	stpos	edpos	
-				*/
+				 */
 				String variantPos = items[1];
-				
+
 				Vector<String> variant;
 				if(variantsByChr.containsKey(chr))	{
 					variant = variantsByChr.get(chr);
-								
+
 				}
 				else	{	//creat point mutation vector.
 					variant = new Vector<>();
 				}
-				
+
 				//add chr - variants.
 				variant.addElement(variantPos);
 				variantsByChr.put(chr, variant);		
 			}
-			
+
 			in.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("[FileNotFoundException] location of vcf file is not valid.");
 		} catch (IOException e) {
 			System.out.println("[IOException] file read error.");
 		}
-		
+
 		System.out.println("have finished converting process..");
 	}
 
@@ -71,7 +71,7 @@ public class ReaderVCF {
 			System.out.println("[convert error] not be exactly completed in convert processing");
 			return ;
 		}
-		
+
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(output));
 			for(String chr : variantsByChr.keySet())	{	//by chromosome
@@ -80,17 +80,18 @@ public class ReaderVCF {
 				}
 			}
 			out.close();
-			
+
 		} catch (IOException e) {
 			System.out.println("[IOException] output path or filename is not valid");
 			e.printStackTrace();
 		}
 		System.out.println("have finished writing bed file..");
+
 	}
 
 	public String getOutput() {
 		return output;
 	}
 
-	
+
 }
