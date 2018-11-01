@@ -41,14 +41,7 @@ public class ExtractMutationLandscape {
         out.close();
 
         //Wait to get exit value
-        int exitValue = -999;
-        try {
-            exitValue = process.waitFor();
-            
-        } catch (InterruptedException e) {
-        	System.out.println("\n\nExit Value is " + exitValue);
-            e.printStackTrace();
-        }
+        UtilFunctions.checkExcuteError(process);
         
         System.out.println(this.getClass() + "..done...");
 	}

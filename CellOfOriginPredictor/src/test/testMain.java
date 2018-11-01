@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.swing.text.Utilities;
 
 import ac.kr.bike.epi.ExecuteBedtools;
+import ac.kr.bike.epi.ExecutorXGboost;
 import ac.kr.bike.epi.ExtractMutationLandscape;
 import ac.kr.bike.epi.ReaderVCF;
 import ac.kr.bike.epi.UtilFunctions;
@@ -46,7 +47,18 @@ public class testMain {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-				
+			
+		//execute r code.
+		ExecutorXGboost xgboost = new ExecutorXGboost();
+		xgboost.setIntermediateFile(tempBedfile);
+		xgboost.makeShellScript();
+		try {
+			xgboost.execute();
+			xgboost.clear();
+		} catch (IOException e) {
+			System.out.println("[error] xgboost execution error!!");
+			e.printStackTrace();
+		}
 	}
 
 }

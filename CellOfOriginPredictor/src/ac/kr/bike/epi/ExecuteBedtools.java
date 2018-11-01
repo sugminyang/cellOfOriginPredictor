@@ -12,9 +12,9 @@ import java.util.Arrays;
 public class ExecuteBedtools {
 
 	private String bedfile;
-	private String output;
 	private String baseFile;
 	private String intermediateFile = "./resultOfBedtools.bed";
+	private String shellScript = "./execBedtools.sh";
 	
 	public ExecuteBedtools(String baseFile, String bedfile) {
 		this.baseFile = baseFile;
@@ -23,8 +23,7 @@ public class ExecuteBedtools {
 
 	public void exec() throws IOException {
 		//bedtools intersect -a 1mb_paper.bed -b with_chr.vcf -c > DO22417.bed
-		System.out.println("name of output: " + output);
-		String shellScript = makeShellScript(baseFile,bedfile);
+		makeShellScript(baseFile,bedfile);
 		
 		
 		String[] command = {"sh",shellScript};
@@ -45,38 +44,22 @@ public class ExecuteBedtools {
         }
 
         //Wait to get exit value
-        int exitValue = -999;
-        try {
-            exitValue = process.waitFor();
-            
-        } catch (InterruptedException e) {
-        	System.out.println("\n\nExit Value is " + exitValue);
-            e.printStackTrace();
-        }
+        UtilFunctions.checkExcuteError(process);
 	}
 
-	private String makeShellScript(String baseFile, String tempFile) {
-		String shellScript = "./execBedtools.sh";
-		 
+	private void makeShellScript(String baseFile, String tempFile) {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(shellScript));
 			out.append("bedtools intersect -a " + baseFile +" -b " + tempFile + " -c > " + intermediateFile + "\n");
 			out.append("rm " + tempFile +"\n");
-//			out.append("rm " + intermediateFile + "\n");
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		return shellScript;
-	}
-
-	public void setoutput(String output) {
-		this.output = output;
 	}
 
 	public void clear() throws IOException {
-		String[] command = {"rm","./execBedtools.sh"};
+		String[] command = {"rm",shellScript};
         ProcessBuilder probuilder = new ProcessBuilder( command );
         
         probuilder.directory(new File("./"));
@@ -94,14 +77,7 @@ public class ExecuteBedtools {
         }
 
         //Wait to get exit value
-        int exitValue = -999;
-        try {
-            exitValue = process.waitFor();
-            
-        } catch (InterruptedException e) {
-        	System.out.println("\n\nExit Value is " + exitValue);
-            e.printStackTrace();
-        }
+        UtilFunctions.checkExcuteError(process);
 	}
 
 	public String getOutput() {
