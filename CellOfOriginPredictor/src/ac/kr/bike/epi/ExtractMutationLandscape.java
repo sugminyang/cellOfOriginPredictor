@@ -16,12 +16,10 @@ public class ExtractMutationLandscape {
 	public ExtractMutationLandscape(String tempFile, String output) {
 		this.output = output;
 		this.tempFile = tempFile; 
-	} 
+	}
 
 	public void extract() throws IOException {
 //		awk '{print $5}' test.bed
-		// TODO SORTING !!!!!! DICTIONARY.. CHECK CHECK!!
-//		sorting dictionary . chr1 -> c11 ....chr9
 		String[] command = {"awk","{print $5}",tempFile};
         ProcessBuilder probuilder = new ProcessBuilder( command );
         
