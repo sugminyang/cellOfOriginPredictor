@@ -16,7 +16,7 @@ public class ExtractMutationLandscape {
 	public ExtractMutationLandscape(String tempFile, String output) {
 		this.output = output;
 		this.tempFile = tempFile; 
-	}
+	} 
 
 	public void extract() throws IOException {
 //		awk '{print $5}' test.bed

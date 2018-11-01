@@ -57,7 +57,7 @@ public class ExecuteBedtools {
 
 	private String makeShellScript(String baseFile, String tempFile) {
 		String shellScript = "./execBedtools.sh";
-		
+		 
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(shellScript));
 			out.append("bedtools intersect -a " + baseFile +" -b " + tempFile + " -c > " + intermediateFile + "\n");

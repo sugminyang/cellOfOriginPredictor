@@ -24,7 +24,7 @@ public class testMain {
 		ReaderVCF reader = new ReaderVCF(dummy_vcf);
 		reader.convert();
 		reader.saveBedFormat();
-		
+		 
 		//bed to mutation in RF or XG.
 		String tempBedfile = reader.getOutput();
 		

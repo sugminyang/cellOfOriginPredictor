@@ -6,7 +6,7 @@ public class UtilFunctions {
 			int index = file.lastIndexOf(".");
 			
 			return file.substring(0, index) + ".csv";
-		}
+		} 
 		else	{
 			return file + ".csv";
 		}

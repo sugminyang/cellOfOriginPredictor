@@ -55,7 +55,7 @@ public class ReaderVCF {
 				variant.addElement(variantPos);
 				variantsByChr.put(chr, variant);		
 			}
-
+ 
 			in.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("[FileNotFoundException] location of vcf file is not valid.");
