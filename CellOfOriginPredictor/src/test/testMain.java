@@ -51,8 +51,16 @@ public class testMain {
 		//execute r code.
 		ExecutorXGboost xgboost = new ExecutorXGboost();
 		xgboost.setIntermediateFile(tempBedfile);
-		xgboost.makeShellScript();
+		
+		
 		try {
+			String top20 = "./rscript/xgboost_top20.R";
+			xgboost.makeShellScript(top20);
+			xgboost.execute();
+			xgboost.clear();
+			
+			String top5 = "./rscript/xgboost_top5.R";
+			xgboost.makeShellScript(top5);
 			xgboost.execute();
 			xgboost.clear();
 		} catch (IOException e) {

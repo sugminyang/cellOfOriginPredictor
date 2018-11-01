@@ -13,12 +13,12 @@ public class ExecutorXGboost {
 	private String shellScript = "./executeXGboost.sh";
 	private String intermediateFile;
 	
-	public void makeShellScript() {
+	public void makeShellScript(String rScript) {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(shellScript));
 //			Rscript ./rscript/xgboost_top20.R -s ./dummy/ -o ./result/
 			out.append("rm " + intermediateFile + "\n");
-			out.append("Rscript ./rscript/xgboost_top20.R -s ./dummy/ -o ./result/" + "\n");
+			out.append("Rscript " + rScript + " -s ./dummy/ -o ./result/" + "\n");
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
