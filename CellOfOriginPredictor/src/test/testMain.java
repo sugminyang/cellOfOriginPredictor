@@ -5,9 +5,11 @@ import java.io.IOException;
 import javax.swing.text.Utilities;
 
 import ac.kr.bike.epi.ExecuteBedtools;
+import ac.kr.bike.epi.ExtractMutationLandscape;
 import ac.kr.bike.epi.ReaderVCF;
 import ac.kr.bike.epi.UtilFunctions;
 
+///Library/Frameworks/R.framework/Resources 	//r dir
 public class testMain {
 
 	public static void main(String[] args) {

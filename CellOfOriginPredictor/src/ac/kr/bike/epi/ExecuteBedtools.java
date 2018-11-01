@@ -62,6 +62,7 @@ public class ExecuteBedtools {
 			BufferedWriter out = new BufferedWriter(new FileWriter(shellScript));
 			out.append("bedtools intersect -a " + baseFile +" -b " + tempFile + " -c > " + intermediateFile + "\n");
 			out.append("rm " + tempFile +"\n");
+//			out.append("rm " + intermediateFile + "\n");
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
