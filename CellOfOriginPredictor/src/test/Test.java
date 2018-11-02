@@ -7,14 +7,14 @@ public class Test {
 
 	public static void main(String[] args) {
 		Rengine re = new Rengine(new String[] {"--vanilla"},false,null);
-
+ 
 		re.eval("a <- 10");
 		REXP x = re.eval("a");
 		System.out.println(x);
 
-		re.eval("try(source('/Users/dean/Downloads/test.r'))");
+		re.eval("try(source('/Users/dean/Downloads/project/rscript/xgboost_top20.R))");
 		
-		System.exit(1);
+		
 	}
 
 }

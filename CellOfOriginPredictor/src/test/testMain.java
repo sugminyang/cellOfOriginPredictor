@@ -51,7 +51,7 @@ public class testMain {
 		//execute r code.
 		ExecutorXGboost xgboost = new ExecutorXGboost();
 		xgboost.setIntermediateFile(tempBedfile);
-		
+		xgboost.setOutput(output);
 		
 		try {
 			String top20 = "./rscript/xgboost_top20.R";

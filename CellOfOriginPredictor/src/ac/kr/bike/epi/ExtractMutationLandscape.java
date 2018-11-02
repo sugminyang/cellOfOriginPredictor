@@ -34,7 +34,8 @@ public class ExtractMutationLandscape {
         System.out.printf("Output of running %s is:\n",
                 Arrays.toString(command));
         BufferedWriter out = new BufferedWriter(new FileWriter(output));
-        out.append("mutation\n");
+        String outputName = UtilFunctions.getOutputName(output);
+        out.append(outputName + "\n");
         while ((line = br.readLine()) != null) {
             out.append(line+"\n");
         }

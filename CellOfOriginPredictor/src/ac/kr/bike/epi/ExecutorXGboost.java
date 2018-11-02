@@ -12,13 +12,14 @@ import java.util.Arrays;
 public class ExecutorXGboost {
 	private String shellScript = "./executeXGboost.sh";
 	private String intermediateFile;
+	private String output;
 	
 	public void makeShellScript(String rScript) {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(shellScript));
 //			Rscript ./rscript/xgboost_top20.R -s ./dummy/ -o ./result/
 			out.append("rm " + intermediateFile + "\n");
-			out.append("Rscript " + rScript + " -s ./dummy/ -o ./result/" + "\n");
+			out.append("Rscript " + rScript + " -s ./dummy/ -o ./result/ -m " + output + "\n");
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -71,6 +72,10 @@ public class ExecutorXGboost {
 
 	public void setIntermediateFile(String tempBedfile) {
 		intermediateFile = tempBedfile;
+	}
+
+	public void setOutput(String output) {
+		this.output = output;
 	}
 
 }
